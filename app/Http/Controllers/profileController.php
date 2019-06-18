@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 
 class profileController extends Controller
 {
+    public function __construct()
+	{
+       $this->middleware('auth')->except([]);
+	}
+
     public function index()
     {
-    	$name='Thomas';
-        return view('user.profile', compact('name'));
+        return view('user.profile');
     }
 }

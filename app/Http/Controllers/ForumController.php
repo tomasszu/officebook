@@ -8,6 +8,12 @@ use App\post;
 
 class ForumController extends Controller
 {
+
+	public function __construct()
+	{
+       $this->middleware('auth')->except([]);
+	}
+
     public function index()
     {
     	$forums=forum::all();
@@ -16,7 +22,7 @@ class ForumController extends Controller
 
     public function show($id)
     {
-    	$posts=post::where('forum_id', $id )->get();
+    	$posts=post::where('forum_id', $id )->latest()->get();
     	return view('forums.show',compact('posts'), ['id' => $id]);
     }
 
@@ -48,6 +54,7 @@ class ForumController extends Controller
     	$post = new post;
     	$post->text = request('body');
     	$post->forum_id = request('forum_id');
+    	$post->user_id = auth()->id();
     	$post->save();
     	$id= request('forum_id');
     	return redirect('/forums/'.$id.'');

@@ -7,9 +7,14 @@ use App\management_post;
 
 class announcementsController extends Controller
 {
+	public function __construct()
+	{
+       $this->middleware('auth')->except([]);
+	}
+	
     public function index()
     {
-    	$announcements=management_post::all();
+    	$announcements=management_post::latest()->get();
 
 	    return view('announcements.announcements', compact('announcements'));
     }

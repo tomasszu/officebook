@@ -8,10 +8,7 @@ Route::get('/', function () {
    return view('main.welcome');
 });
 
-Route::get('/about',function()
-{
-   return view('main.about');
-});
+Route::get('/about','questionController@index');
 
 Route::get('/profile','profileController@index');
 
@@ -29,6 +26,24 @@ Route::get('/forums/{id}','ForumController@show');
 
 Route::get('/forums/{id}/create','ForumController@postcreate');
 
+Route::post('/about/question','questionController@store');
+
 Route::post('/forums','ForumController@store_forum');
 
 Route::post('/forums/{id}','ForumController@store_post');
+
+Route::delete('/messages/{id}/delete','messagesController@destroy');
+
+Route::get('/register','registrationController@create');
+
+Route::post('/register','registrationController@store');
+
+Route::get('/login','sessionsController@create')->name('login');
+
+Route::post('/login','sessionsController@store');
+
+Route::get('/logout','sessionsController@destroy');
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

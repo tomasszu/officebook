@@ -8,6 +8,8 @@
        @foreach ($posts as $post)
 
         <li>
+          <h5> By {{ $post->user->name }}</h5>
+          <h6>Posted at: {{$post->created_at->toFormattedDateString() }}</h6>
           <p>{{ $post->text }}</p>
         </li>
 

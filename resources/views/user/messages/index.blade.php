@@ -10,7 +10,7 @@
 
         <li>
         	<a href="/messages/{{$message->id}}">
-        	 {{ $message->message }}
+        	 {{ $message->message }} recieved {{ $message->created_at }}
         	</a>
  
         </li>
