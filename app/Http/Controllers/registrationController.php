@@ -33,4 +33,12 @@ class registrationController extends Controller
 
         return redirect('/');
     }
+
+    public function update()
+    {
+      //dd(request('body'));
+      ;
+        User::where('id', request('user') )->update(['Permission'=> request('privilige')]);
+      return redirect('/profile');
+    }
 }

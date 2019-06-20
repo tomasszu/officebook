@@ -4,7 +4,7 @@
 	<title>Announcements</title>
 </head>
 <body>
-
+@include('layouts.navbar')
 <h1>Announcements from the management:</h1>
 
 <ul>

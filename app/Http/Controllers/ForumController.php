@@ -16,7 +16,8 @@ class ForumController extends Controller
 
     public function index()
     {
-    	$forums=forum::all();
+        //dd(auth()->user()->Permission);
+    	$forums=forum::where('permission','<=' , auth()->user()->Permission )->get();
     	return view('forums.index', compact('forums'));
     }
 
@@ -43,6 +44,7 @@ class ForumController extends Controller
 
     	$forum = new forum;
     	$forum->title = request('title');
+        $forum->Permission = auth()->user()->Permission;
     	$forum->save();
     	return redirect('/forums');
     }
@@ -58,5 +60,23 @@ class ForumController extends Controller
     	$post->save();
     	$id= request('forum_id');
     	return redirect('/forums/'.$id.'');
+    }
+
+    public function destroy_post()
+    {
+        //dd(request()->all());
+
+        $id= request('post');
+        post::where('id', $id )->delete();
+        return redirect('/profile');
+    }
+
+    public function destroy_forum()
+    {
+        //dd(request()->all());
+
+        $id= request('forum');
+        forum::where('id', $id )->delete();
+        return redirect('/profile');
     }
 }

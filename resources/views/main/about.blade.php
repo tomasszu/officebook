@@ -4,6 +4,9 @@
     <title>About officebook</title>
 </head>
 <body>
+  @if(Auth::check())
+  @include('layouts.navbar')
+  @endif
    <h1>About us</h1>
    <br>
    <h2>Ask us a question:</h2>

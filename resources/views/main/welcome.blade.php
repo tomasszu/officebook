@@ -4,11 +4,16 @@
     <title>Officebook homepage</title>
 </head>
 <body>
-   <h1>Welcome to Officebook homepage</h1>
+   <h1>{{trans('phrases.greeting')}}</h1>
+   <h3><a href="/en">English </a></h3>
+   <h3><a href="/de">German </a></h3>
+   <h3><a href="/fr">French </a></h3>
+   <h3><a href="/lv">Latvian </a></h3>
+   <h3><a href="/ru">Russian </a></h3>
    @if(Auth::check())
    <ul>
     <li>
-    <a href="/forums"> See Forums </a>
+    <a href="/forums">See Forums </a>
     </li>
     <li>
     <a href="/profile"> See Profile </a>
@@ -23,7 +28,9 @@
     <li>
     <a href="/about"> See about page </a>
     </li>
+  </ul>
     <hr>
+    <ul>
     <li>
     <a href="/register"> Register </a>
     </li>

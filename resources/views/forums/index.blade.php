@@ -9,7 +9,7 @@
        @foreach ($forums as $forum)
 
         <li>
-        	<h2><a href="/forums/{{$forum->id}}">{{ $forum->title }}</h2>
+        	<h2><a href="/forums/{{$forum->id}}">{{ $forum->title }}</a></h2>
         </li>
 
        @endforeach

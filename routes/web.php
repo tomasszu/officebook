@@ -3,8 +3,8 @@
 use App\message;
 use App\management_post;
 
-Route::get('/', function () {
 
+Route::get('/', function () {
    return view('main.welcome');
 });
 
@@ -14,7 +14,13 @@ Route::get('/profile','profileController@index');
 
 Route::get('/announcements','announcementsController@index');
 
+Route::post('/announcements/create','announcementsController@store');
+
+Route::patch('/announcements/edit','announcementsController@patch');
+
 Route::get('/messages','messagesController@index');
+
+Route::post('/messages/send','messagesController@store');
 
 Route::get('/messages/{id}','messagesController@show');
 
@@ -32,6 +38,10 @@ Route::post('/forums','ForumController@store_forum');
 
 Route::post('/forums/{id}','ForumController@store_post');
 
+Route::delete('/forums/post_destroy','ForumController@destroy_post');
+
+Route::delete('/forums/forum_destroy','ForumController@destroy_forum');
+
 Route::delete('/messages/{id}/delete','messagesController@destroy');
 
 Route::get('/register','registrationController@create');
@@ -43,6 +53,13 @@ Route::get('/login','sessionsController@create')->name('login');
 Route::post('/login','sessionsController@store');
 
 Route::get('/logout','sessionsController@destroy');
+
+Route::patch('/user_privilige_change','registrationController@update');
+
+Route::get('/{id}', function ($id) {
+   Lang::setlocale($id);
+   return view('main.welcome');
+});
 
 //Auth::routes();
 
